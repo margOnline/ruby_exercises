@@ -1,4 +1,3 @@
-This application is written in Ruby 2.0
 <h4>Objective</h4>
 Exercises to practice programming techniques using Ruby.
 <h4>Requirements</h4>
