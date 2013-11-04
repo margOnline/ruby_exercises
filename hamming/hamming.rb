@@ -1,14 +1,12 @@
 class Hamming
 
   def self.compute(strand1, strand2)
-    chars1 = strand1.chars
-    chars2 = strand2.chars
-    iterate = [chars1.length,chars2.length].min
-    distance = 0
-    iterate.times do |n|
-      distance += 1 unless chars1[n] == chars2[n]
-    end
-    distance
+    nucleotides1 = strand1.chars
+    nucleotides2 = strand2.chars
+    @corresponding_nucleotides = nucleotides1.zip(nucleotides2)
+    distance = @corresponding_nucleotides.select do |pair| 
+      pair.compact.uniq.length == 2 
+    end.count
   end
 
 end
