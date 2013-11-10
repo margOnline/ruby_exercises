@@ -4,6 +4,11 @@ class Robot
     @name ||= prefix + suffix
   end
 
+  def reset
+    @name = nil
+  end
+
+private
   def prefix
     letters.sample(2).join
   end
@@ -12,11 +17,6 @@ class Robot
     numbers.sample(3).join
   end
 
-  def reset
-    @name = nil
-  end
-
-private
   def letters
     ('a'..'z').to_a
   end
