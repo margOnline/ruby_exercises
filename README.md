@@ -8,4 +8,3 @@ All exercises have been taken from the <a href="http://exercism.io">exercism.io<
 
 <h4>Next Steps</h4>
 To add more exercises from <a href="http://exercism.io">exercism.io</a> and other sources. Please feel free to add exercises.
-
