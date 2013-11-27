@@ -46,12 +46,16 @@ describe 'Word_composer' do
     expect(word_composer.two_three_letters?('convex')).to be_true
   end
 
-  it 'knows if a word is in the dictionary' do
-    expect(word_composer.is_word?('tail')).to be_true
+  it 'shows a six letter word with its 2 and 4 letter component words' do
+    expect(word_composer.two_and_four_components('ordeal')).to eq [['or', 'deal', 'ordeal']]
   end
 
-  it 'knows if a word is not in the dictionary' do
-    expect(word_composer.is_word?('ilor')).to be_false
+  it 'shows a six letter word with its 4 and 2 letter component words' do
+    expect(word_composer.four_and_two_components('tailor')).to eq [['tail', 'or', 'tailor']]
+  end
+
+  it 'shows a six letter word with its 2 3 letter component words' do
+    expect(word_composer.two_three_components('convex')).to eq [['con', 'vex', 'convex']]
   end
   
 end
