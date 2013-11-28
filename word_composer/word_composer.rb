@@ -68,6 +68,6 @@ class Word_composer
 
 end
 
-# compose = Word_composer.new()
-# words = compose.solve
-# words.each {|elem| puts "#{elem[0]} + #{elem[1]} = #{elem[2]}"}
+compose = Word_composer.new()
+words = compose.solve
+words.each {|elem| puts "#{elem[0]} + #{elem[1]} = #{elem[2]}"}
