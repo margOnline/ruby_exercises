@@ -5,53 +5,39 @@ class Word_composer
   def initialize
     @letter_dict = {}
     @result = []
-    @dictionary = open_dictionary
+    @n_dictionary = open_dictionary 6
     create_word_arrays
   end
 
   def solve
-    @letter_dict[6].select{|word| get_sub_words_of(word)}
+    parent_words = @n_dictionary.select{|word| get_sub_words_of(word)}
     @result
   end
 
   def get_sub_words_of word
-    return two_and_four_components(word) if two_and_four_letters?(word) 
-    return four_and_two_components(word) if four_and_two_letters?(word) 
-    return two_three_components(word) if two_three_letters?(word)
-    false
+    has_components? word
   end
 
-  def open_dictionary
+  def open_dictionary number
     file = '/usr/share/dict/words'
-    File.readlines(file).each { |line|line.chomp! }
+    File.readlines(file).select { |line| n_letters?(number,line.chomp!) }
   end
 
   def create_word_arrays
-    @letter_dict[6] = find_n_letter_words 6
     4.downto(2) {|n| @letter_dict[n] = find_n_letter_words n}
   end
 
-  def two_and_four_letters? word
-    (@letter_dict[2].include?(word[0,2]) && 
-    @letter_dict[4].include?(word[-4,4]))
+  def has_components? word, index1, index2
+    (@letter_dict[index1].include?(word[0,index1]) && 
+    @letter_dict[index2].include?(word[-index2,index2]))
   end
 
-  def two_and_four_components word
-    @result << [word[0,2], word[-4,4], word]
-  end
-
-  def four_and_two_letters? word
-    (@letter_dict[4].include?(word[0,4]) && 
-    @letter_dict[2].include?(word[-2,2]))
+  def components_for word, word_index
+    @result << [word[0,word_index], word[-word_index,word_index], word]
   end
 
   def four_and_two_components word
     @result << [word[0,4], word[-2,2], word]
-  end
-
-  def two_three_letters? word
-    (@letter_dict[3].include?(word[0,3]) && 
-    @letter_dict[3].include?(word[-3,3]))
   end
 
   def two_three_components word
@@ -59,7 +45,7 @@ class Word_composer
   end
 
   def find_n_letter_words n
-    @dictionary.select{|word| n_letters?(n, word)}
+    @n_dictionary.select{|word| n_letters?(n, word)}
   end
 
   def n_letters?(n, word)
@@ -68,6 +54,6 @@ class Word_composer
 
 end
 
-compose = Word_composer.new()
-words = compose.solve
-words.each {|elem| puts "#{elem[0]} + #{elem[1]} = #{elem[2]}"}
+# compose = Word_composer.new()
+# words = compose.solve
+# words.each {|elem| puts "#{elem[0]} + #{elem[1]} = #{elem[2]}"}
