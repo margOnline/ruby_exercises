@@ -6,6 +6,10 @@ class Scrabble
     @word = word.to_s.downcase
   end
 
+  def self.score word
+    new(word).score  
+  end
+
   def letter_points
     { 'a' => 1,
       'b' => 3,
